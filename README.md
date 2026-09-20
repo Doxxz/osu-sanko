@@ -8,9 +8,10 @@ No the third note is not called Yo or Yomo or something
 This is literally just taiko but with 3 colours and 6 keys.
 
 - Conversion works from std or taiko, it's basically random, but unlike the Random mod, it doesn't turn dons into kats or kats into dons. Isolated notes and sequences and big notes all have separate chances of being converted to tsus, and I made a mod that allows tweaking these chances, but I think the defaults have pretty decent results already. There are also some other conversion rules, but I basically made all of this to try to preserve the structure of the original map.
-- There is another mod that adds a different type of conversion, instead of the separate chances, any note has a chance of getting converted to tsu.
+- There is another mod that adds a different type of conversion: Instead of the separate chances, any note has a chance of getting converted to tsu.
 - Any skin should work.
 - Editor works too, claps are kat and whistles are tsu.
 - Difficulty calculation is bs but it does consider three colours kinda
+- This creates it's own folder so it won't nuke your lazer install or osu-development
 
 vibecoded slop
