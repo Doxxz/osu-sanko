@@ -12,7 +12,7 @@ namespace osu.Game.Tournament.Tests
         [STAThread]
         public static int Main(string[] args)
         {
-            using (DesktopGameHost host = Host.GetSuitableDesktopHost(@"osu-development"))
+            using (DesktopGameHost host = Host.GetSuitableDesktopHost(@"osu-sanko"))
             {
                 host.Run(new TournamentTestBrowser());
                 return 0;

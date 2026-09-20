@@ -10,6 +10,7 @@ using System.Text;
 using osu.Game.Audio;
 using osu.Game.Beatmaps.ControlPoints;
 using osu.Game.Beatmaps.Legacy;
+using osu.Game.Rulesets;
 using osu.Game.Rulesets.Objects;
 using osu.Game.Rulesets.Objects.Legacy;
 using osu.Game.Rulesets.Objects.Types;
@@ -49,7 +50,7 @@ namespace osu.Game.Beatmaps.Formats
 
             onlineRulesetID = beatmap.BeatmapInfo.Ruleset.OnlineID;
 
-            if (onlineRulesetID < 0 || onlineRulesetID > 3)
+            if (onlineRulesetID < 0 || onlineRulesetID > ILegacyRuleset.MAX_LEGACY_RULESET_ID)
                 throw new ArgumentException("Only beatmaps in the osu, taiko, catch, or mania rulesets can be encoded to the legacy beatmap format.", nameof(beatmap));
         }
 
@@ -191,9 +192,9 @@ namespace osu.Game.Beatmaps.Formats
             SampleControlPoint? lastRelevantSamplePoint = null;
             DifficultyControlPoint? lastRelevantDifficultyPoint = null;
 
-            // In osu!taiko and osu!mania, a scroll speed is stored as "slider velocity" in legacy formats.
+            // In osu!taiko (and osu!sanko, which reuses taiko's encoding) and osu!mania, a scroll speed is stored as "slider velocity" in legacy formats.
             // In that case, a scrolling speed change is a global effect and per-hit object difficulty control points are ignored.
-            bool scrollSpeedEncodedAsSliderVelocity = onlineRulesetID == 1 || onlineRulesetID == 3;
+            bool scrollSpeedEncodedAsSliderVelocity = onlineRulesetID == 1 || onlineRulesetID == 3 || onlineRulesetID == ILegacyRuleset.SANKO_RULESET_ID;
 
             // iterate over hitobjects and pull out all required sample and difficulty changes
             extractDifficultyControlPoints(beatmap.HitObjects);

@@ -1,4 +1,4 @@
-﻿// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the MIT Licence.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the MIT Licence.
 // See the LICENCE file in the repository root for full licence text.
 
 using System;
@@ -554,8 +554,8 @@ namespace osu.Game.Beatmaps.Formats
                 KiaiMode = kiaiMode,
             };
 
-            // osu!taiko and osu!mania use effect points rather than difficulty points for scroll speed adjustments.
-            if (onlineRulesetID == 1 || onlineRulesetID == 3)
+            // osu!taiko (and osu!sanko, which reuses taiko's encoding) and osu!mania use effect points rather than difficulty points for scroll speed adjustments.
+            if (onlineRulesetID == 1 || onlineRulesetID == 3 || onlineRulesetID == ILegacyRuleset.SANKO_RULESET_ID)
                 effectPoint.ScrollSpeed = speedMultiplier;
 
             addControlPoint(time, effectPoint, timingChange);

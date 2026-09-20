@@ -1,0 +1,154 @@
+{
+  "Mappings": [
+    {
+      "StartTime": 0.0,
+      "Objects": [
+        {
+          "StartTime": 0.0,
+          "EndTime": 0.0,
+          "IsRim": true,
+          "IsCentre": false,
+          "IsTsu": false,
+          "IsDrumRoll": false,
+          "IsSwell": false,
+          "IsStrong": true
+        },
+        {
+          "StartTime": 162.62806960481367,
+          "EndTime": 162.62806960481367,
+          "IsRim": false,
+          "IsCentre": true,
+          "IsTsu": false,
+          "IsDrumRoll": false,
+          "IsSwell": false,
+          "IsStrong": false
+        },
+        {
+          "StartTime": 325.25613920962735,
+          "EndTime": 325.25613920962735,
+          "IsRim": true,
+          "IsCentre": false,
+          "IsTsu": false,
+          "IsDrumRoll": false,
+          "IsSwell": false,
+          "IsStrong": true
+        },
+        {
+          "StartTime": 487.884208814441,
+          "EndTime": 487.884208814441,
+          "IsRim": false,
+          "IsCentre": true,
+          "IsTsu": false,
+          "IsDrumRoll": false,
+          "IsSwell": false,
+          "IsStrong": false
+        },
+        {
+          "StartTime": 650.5122784192547,
+          "EndTime": 650.5122784192547,
+          "IsRim": true,
+          "IsCentre": false,
+          "IsTsu": false,
+          "IsDrumRoll": false,
+          "IsSwell": false,
+          "IsStrong": true
+        },
+        {
+          "StartTime": 813.1403480240683,
+          "EndTime": 813.1403480240683,
+          "IsRim": false,
+          "IsCentre": true,
+          "IsTsu": false,
+          "IsDrumRoll": false,
+          "IsSwell": false,
+          "IsStrong": false
+        },
+        {
+          "StartTime": 975.7684176288819,
+          "EndTime": 975.7684176288819,
+          "IsRim": true,
+          "IsCentre": false,
+          "IsTsu": false,
+          "IsDrumRoll": false,
+          "IsSwell": false,
+          "IsStrong": true
+        }
+      ]
+    },
+    {
+      "StartTime": 2000.0,
+      "Objects": [
+        {
+          "StartTime": 2000.0,
+          "EndTime": 2000.0,
+          "IsRim": true,
+          "IsCentre": false,
+          "IsTsu": false,
+          "IsDrumRoll": false,
+          "IsSwell": false,
+          "IsStrong": false
+        },
+        {
+          "StartTime": 2162.628069604814,
+          "EndTime": 2162.628069604814,
+          "IsRim": true,
+          "IsCentre": false,
+          "IsTsu": false,
+          "IsDrumRoll": false,
+          "IsSwell": false,
+          "IsStrong": false
+        },
+        {
+          "StartTime": 2325.2561392096277,
+          "EndTime": 2325.2561392096277,
+          "IsRim": true,
+          "IsCentre": false,
+          "IsTsu": false,
+          "IsDrumRoll": false,
+          "IsSwell": false,
+          "IsStrong": true
+        },
+        {
+          "StartTime": 2487.8842088144415,
+          "EndTime": 2487.8842088144415,
+          "IsRim": true,
+          "IsCentre": false,
+          "IsTsu": false,
+          "IsDrumRoll": false,
+          "IsSwell": false,
+          "IsStrong": false
+        },
+        {
+          "StartTime": 2650.5122784192554,
+          "EndTime": 2650.5122784192554,
+          "IsRim": true,
+          "IsCentre": false,
+          "IsTsu": false,
+          "IsDrumRoll": false,
+          "IsSwell": false,
+          "IsStrong": false
+        },
+        {
+          "StartTime": 2813.140348024069,
+          "EndTime": 2813.140348024069,
+          "IsRim": true,
+          "IsCentre": false,
+          "IsTsu": false,
+          "IsDrumRoll": false,
+          "IsSwell": false,
+          "IsStrong": true
+        },
+        {
+          "StartTime": 2975.768417628883,
+          "EndTime": 2975.768417628883,
+          "IsRim": true,
+          "IsCentre": false,
+          "IsTsu": false,
+          "IsDrumRoll": false,
+          "IsSwell": false,
+          "IsStrong": false
+        }
+      ]
+    }
+  ]
+}

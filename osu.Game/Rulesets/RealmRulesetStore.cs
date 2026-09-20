@@ -33,13 +33,27 @@ namespace osu.Game.Rulesets
         {
             realmAccess.Write(realm =>
             {
-                var rulesets = realm.All<RulesetInfo>();
-
                 List<Ruleset> instances = LoadedAssemblies.Values
                                                           .Select(r => Activator.CreateInstance(r) as Ruleset)
                                                           .Where(r => r != null)
                                                           .Select(r => r.AsNonNull())
                                                           .ToList();
+
+                // Repair ruleset entries whose stored online ID no longer matches the ruleset they point to.
+                // This can happen when a bundled custom ruleset stops claiming an official legacy ruleset ID.
+                // The entry is updated in place (rather than removed) to keep any beatmap links pointing at it valid.
+                foreach (var existing in realm.All<RulesetInfo>().ToList())
+                {
+                    Ruleset? instance = instances.FirstOrDefault(i => i.RulesetInfo.InstantiationInfo.Equals(existing.InstantiationInfo, StringComparison.Ordinal));
+
+                    if (instance == null || instance.RulesetInfo.OnlineID == existing.OnlineID)
+                        continue;
+
+                    Logger.Log($@"Updating ruleset entry for {existing.ShortName} (stored online ID {existing.OnlineID}, current online ID {instance.RulesetInfo.OnlineID}).");
+                    existing.OnlineID = instance.RulesetInfo.OnlineID;
+                }
+
+                var rulesets = realm.All<RulesetInfo>();
 
                 // add all legacy rulesets first to ensure they have exclusive choice of primary key.
                 foreach (var r in instances.Where(r => r is ILegacyRuleset))
@@ -116,6 +130,53 @@ namespace osu.Game.Rulesets
                     {
                         r.Available = false;
                         LogRulesetFailure(r, ex);
+                    }
+                }
+
+                // Repair beatmaps whose linked ruleset is no longer available. This can happen if a bundled
+                // ruleset previously claimed a different online ID, leaving the beatmap pointing at a ruleset
+                // which can no longer be instantiated. The link is re-pointed rather than requiring a database reset.
+                foreach (var beatmap in realm.All<BeatmapInfo>().ToList())
+                {
+                    RulesetInfo? currentRuleset;
+
+                    try
+                    {
+                        currentRuleset = beatmap.Ruleset;
+                    }
+                    catch
+                    {
+                        currentRuleset = null;
+                    }
+
+                    if (currentRuleset != null && currentRuleset.Available)
+                        continue;
+
+                    int previousOnlineId;
+
+                    try
+                    {
+                        previousOnlineId = currentRuleset?.OnlineID ?? -1;
+                    }
+                    catch
+                    {
+                        previousOnlineId = -1;
+                    }
+
+                    RulesetInfo? replacement = rulesets.FirstOrDefault(rs => rs.Available && rs.OnlineID == previousOnlineId)
+                                               ?? rulesets.FirstOrDefault(rs => rs.Available && rs.OnlineID == 0);
+
+                    if (replacement == null)
+                        continue;
+
+                    try
+                    {
+                        Logger.Log($@"Repairing ruleset link for beatmap ""{beatmap.DifficultyName}"" (was online ID {previousOnlineId}, now {replacement.OnlineID}).");
+                        beatmap.Ruleset = replacement;
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Log($@"Failed to repair ruleset link for beatmap ""{beatmap.DifficultyName}"": {ex}");
                     }
                 }
 

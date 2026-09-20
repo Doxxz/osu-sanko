@@ -1,0 +1,19 @@
+{
+  "Mappings": [
+    {
+      "StartTime": 51532.0,
+      "Objects": [
+        {
+          "StartTime": 51532.0,
+          "EndTime": 52301.0,
+          "IsRim": false,
+          "IsCentre": false,
+          "IsTsu": false,
+          "IsDrumRoll": true,
+          "IsSwell": false,
+          "IsStrong": false
+        }
+      ]
+    }
+  ]
+}

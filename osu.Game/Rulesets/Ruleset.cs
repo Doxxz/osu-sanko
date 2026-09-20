@@ -1,4 +1,4 @@
-﻿// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the MIT Licence.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the MIT Licence.
 // See the LICENCE file in the repository root for full licence text.
 
 using System;
@@ -463,6 +463,15 @@ namespace osu.Game.Rulesets
         /// Creates ruleset-specific beatmap filter criteria to be used on the song select screen.
         /// </summary>
         public virtual IRulesetFilterCriteria? CreateRulesetFilterCriteria() => null;
+
+        /// <summary>
+        /// Whether beatmaps from the specified source ruleset may be converted into this ruleset.
+        /// </summary>
+        /// <remarks>
+        /// osu! standard beatmaps are always considered convertible and do not need to be returned here.
+        /// Override to opt in to additional source rulesets (for example, osu!sanko accepting osu!taiko beatmaps).
+        /// </remarks>
+        public virtual bool AllowConversionFrom(IRulesetInfo sourceRuleset) => false;
 
         /// <summary>
         /// Can be overridden to add ruleset-specific sections to the editor beatmap setup screen.

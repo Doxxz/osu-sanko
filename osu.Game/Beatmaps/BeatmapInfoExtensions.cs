@@ -72,8 +72,26 @@ namespace osu.Game.Beatmaps
             if (beatmap.Ruleset.ShortName == ruleset.ShortName)
                 return true;
 
-            if (allowConversion && beatmap.Ruleset.OnlineID == 0 && ruleset.OnlineID != 0)
+            if (!allowConversion)
+                return false;
+
+            // osu! standard beatmaps are convertible into any other ruleset.
+            if (beatmap.Ruleset.OnlineID == 0 && ruleset.OnlineID != 0)
                 return true;
+
+            // Custom rulesets (which sit outside the official 0-3 range) may opt in to converting
+            // additional source rulesets, e.g. osu!sanko converting osu!taiko beatmaps.
+            if (ruleset.OnlineID > 3)
+            {
+                try
+                {
+                    return ruleset.CreateInstance().AllowConversionFrom(beatmap.Ruleset);
+                }
+                catch
+                {
+                    return false;
+                }
+            }
 
             return false;
         }

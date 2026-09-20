@@ -1,4 +1,4 @@
-﻿// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the MIT Licence.
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the MIT Licence.
 // See the LICENCE file in the repository root for full licence text.
 
 using System;
@@ -20,11 +20,10 @@ namespace osu.Desktop
 {
     public static class Program
     {
-#if DEBUG
-        private const string base_game_name = @"osu-development";
-#else
-        private const string base_game_name = @"osu";
-#endif
+        // osu!sanko always uses its own storage folder (e.g. ~/.local/share/osu-sanko on linux, %APPDATA%\osu-sanko
+        // on windows) rather than sharing osu!'s, so that running the fork can never modify an osu!lazer installation's
+        // settings, beatmaps or scores.
+        private const string base_game_name = @"osu-sanko";
 
         private static LegacyTcpIpcProvider? legacyIpc;
 
