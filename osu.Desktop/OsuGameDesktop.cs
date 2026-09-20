@@ -117,10 +117,9 @@ namespace osu.Desktop
             if (IsFirstRun)
                 LocalConfig.SetValue(OsuSetting.ReleaseStream, Version.Contains("-tachyon") ? ReleaseStream.Tachyon : ReleaseStream.Lazer);
 
-            if (IsPackageManaged)
-                return new NoActionUpdateManager();
-
-            return new VelopackUpdateManager();
+            // osu!sanko is distributed as a standalone build rather than through an auto-updating installer,
+            // so no update is ever checked for or applied.
+            return new NoActionUpdateManager();
         }
 
         public override bool RestartAppWhenExited()
